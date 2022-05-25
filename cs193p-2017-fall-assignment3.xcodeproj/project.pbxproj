@@ -9,21 +9,37 @@
 /* Begin PBXBuildFile section */
 		EF2BD216283E21B3008AD015 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2BD215283E21B3008AD015 /* AppDelegate.swift */; };
 		EF2BD218283E21B3008AD015 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2BD217283E21B3008AD015 /* SceneDelegate.swift */; };
-		EF2BD21A283E21B3008AD015 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2BD219283E21B3008AD015 /* ViewController.swift */; };
-		EF2BD21D283E21B3008AD015 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF2BD21B283E21B3008AD015 /* Main.storyboard */; };
 		EF2BD21F283E21B3008AD015 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF2BD21E283E21B3008AD015 /* Assets.xcassets */; };
 		EF2BD222283E21B3008AD015 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF2BD220283E21B3008AD015 /* LaunchScreen.storyboard */; };
+		EF2BD22F283E2225008AD015 /* SetCardViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2BD22E283E2225008AD015 /* SetCardViewProtocol.swift */; };
+		EF2BD231283E2249008AD015 /* SetCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2BD230283E2249008AD015 /* SetCardButton.swift */; };
+		EF2BD233283E2266008AD015 /* SetCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2BD232283E2266008AD015 /* SetCardView.swift */; };
+		EF2BD235283E2289008AD015 /* SetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2BD234283E2289008AD015 /* SetCard.swift */; };
+		EF2BD237283E229A008AD015 /* SetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2BD236283E229A008AD015 /* SetGame.swift */; };
+		EF2BD239283E22C6008AD015 /* SetGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2BD238283E22C6008AD015 /* SetGameViewController.swift */; };
+		EF2BD23E283E22F6008AD015 /* SetCardAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2BD23A283E22F6008AD015 /* SetCardAreaView.swift */; };
+		EF2BD23F283E22F6008AD015 /* SetCardViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2BD23B283E22F6008AD015 /* SetCardViewConstants.swift */; };
+		EF2BD240283E22F6008AD015 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2BD23C283E22F6008AD015 /* Grid.swift */; };
+		EF2BD241283E22F6008AD015 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF2BD23D283E22F6008AD015 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EF2BD212283E21B3008AD015 /* cs193p-2017-fall-assignment3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "cs193p-2017-fall-assignment3.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF2BD215283E21B3008AD015 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF2BD217283E21B3008AD015 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EF2BD219283E21B3008AD015 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		EF2BD21C283E21B3008AD015 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EF2BD21E283E21B3008AD015 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF2BD221283E21B3008AD015 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF2BD223283E21B3008AD015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF2BD22E283E2225008AD015 /* SetCardViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCardViewProtocol.swift; sourceTree = "<group>"; };
+		EF2BD230283E2249008AD015 /* SetCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCardButton.swift; sourceTree = "<group>"; };
+		EF2BD232283E2266008AD015 /* SetCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCardView.swift; sourceTree = "<group>"; };
+		EF2BD234283E2289008AD015 /* SetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCard.swift; sourceTree = "<group>"; };
+		EF2BD236283E229A008AD015 /* SetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGame.swift; sourceTree = "<group>"; };
+		EF2BD238283E22C6008AD015 /* SetGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetGameViewController.swift; sourceTree = "<group>"; };
+		EF2BD23A283E22F6008AD015 /* SetCardAreaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetCardAreaView.swift; sourceTree = "<group>"; };
+		EF2BD23B283E22F6008AD015 /* SetCardViewConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetCardViewConstants.swift; sourceTree = "<group>"; };
+		EF2BD23C283E22F6008AD015 /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		EF2BD23D283E22F6008AD015 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +72,63 @@
 		EF2BD214283E21B3008AD015 /* cs193p-2017-fall-assignment3 */ = {
 			isa = PBXGroup;
 			children = (
-				EF2BD215283E21B3008AD015 /* AppDelegate.swift */,
-				EF2BD217283E21B3008AD015 /* SceneDelegate.swift */,
-				EF2BD219283E21B3008AD015 /* ViewController.swift */,
-				EF2BD21B283E21B3008AD015 /* Main.storyboard */,
-				EF2BD21E283E21B3008AD015 /* Assets.xcassets */,
-				EF2BD220283E21B3008AD015 /* LaunchScreen.storyboard */,
+				EF2BD22C283E21DC008AD015 /* Supporting Files */,
+				EF2BD22B283E21D3008AD015 /* Controller */,
+				EF2BD22A283E21CD008AD015 /* View */,
+				EF2BD229283E21C7008AD015 /* Model */,
 				EF2BD223283E21B3008AD015 /* Info.plist */,
 			);
 			path = "cs193p-2017-fall-assignment3";
+			sourceTree = "<group>";
+		};
+		EF2BD229283E21C7008AD015 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EF2BD234283E2289008AD015 /* SetCard.swift */,
+				EF2BD236283E229A008AD015 /* SetGame.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EF2BD22A283E21CD008AD015 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EF2BD23C283E22F6008AD015 /* Grid.swift */,
+				EF2BD23D283E22F6008AD015 /* Main.storyboard */,
+				EF2BD23A283E22F6008AD015 /* SetCardAreaView.swift */,
+				EF2BD23B283E22F6008AD015 /* SetCardViewConstants.swift */,
+				EF2BD22D283E2213008AD015 /* SetCardView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EF2BD22B283E21D3008AD015 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EF2BD238283E22C6008AD015 /* SetGameViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EF2BD22C283E21DC008AD015 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EF2BD217283E21B3008AD015 /* SceneDelegate.swift */,
+				EF2BD220283E21B3008AD015 /* LaunchScreen.storyboard */,
+				EF2BD21E283E21B3008AD015 /* Assets.xcassets */,
+				EF2BD215283E21B3008AD015 /* AppDelegate.swift */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EF2BD22D283E2213008AD015 /* SetCardView */ = {
+			isa = PBXGroup;
+			children = (
+				EF2BD22E283E2225008AD015 /* SetCardViewProtocol.swift */,
+				EF2BD230283E2249008AD015 /* SetCardButton.swift */,
+				EF2BD232283E2266008AD015 /* SetCardView.swift */,
+			);
+			path = SetCardView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +191,7 @@
 			files = (
 				EF2BD222283E21B3008AD015 /* LaunchScreen.storyboard in Resources */,
 				EF2BD21F283E21B3008AD015 /* Assets.xcassets in Resources */,
-				EF2BD21D283E21B3008AD015 /* Main.storyboard in Resources */,
+				EF2BD241283E22F6008AD015 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +202,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF2BD21A283E21B3008AD015 /* ViewController.swift in Sources */,
+				EF2BD235283E2289008AD015 /* SetCard.swift in Sources */,
+				EF2BD23F283E22F6008AD015 /* SetCardViewConstants.swift in Sources */,
+				EF2BD233283E2266008AD015 /* SetCardView.swift in Sources */,
+				EF2BD23E283E22F6008AD015 /* SetCardAreaView.swift in Sources */,
+				EF2BD240283E22F6008AD015 /* Grid.swift in Sources */,
+				EF2BD239283E22C6008AD015 /* SetGameViewController.swift in Sources */,
 				EF2BD216283E21B3008AD015 /* AppDelegate.swift in Sources */,
+				EF2BD231283E2249008AD015 /* SetCardButton.swift in Sources */,
 				EF2BD218283E21B3008AD015 /* SceneDelegate.swift in Sources */,
+				EF2BD237283E229A008AD015 /* SetGame.swift in Sources */,
+				EF2BD22F283E2225008AD015 /* SetCardViewProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		EF2BD21B283E21B3008AD015 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EF2BD21C283E21B3008AD015 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		EF2BD220283E21B3008AD015 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -295,6 +359,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -323,6 +388,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
