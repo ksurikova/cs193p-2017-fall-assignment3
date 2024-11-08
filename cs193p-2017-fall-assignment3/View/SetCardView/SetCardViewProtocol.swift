@@ -9,10 +9,10 @@ import Foundation
 import UIKit
 
 protocol SetCardViewProtocol: UIView {
-    
-    var card : SetCard { get set}
+
+    var card: SetCard { get set }
 
     func setBorderColor(at: UIColor)
-    
+
     func clearBorder()
 }

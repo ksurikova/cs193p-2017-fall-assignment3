@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E782D942CDE1FA000B43108 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 4E782D932CDE1FA000B43108 /* .swiftlint.yml */; };
 		EF2BD216283E21B3008AD015 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2BD215283E21B3008AD015 /* AppDelegate.swift */; };
 		EF2BD218283E21B3008AD015 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2BD217283E21B3008AD015 /* SceneDelegate.swift */; };
 		EF2BD21F283E21B3008AD015 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF2BD21E283E21B3008AD015 /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E782D932CDE1FA000B43108 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		EF2BD212283E21B3008AD015 /* cs193p-2017-fall-assignment3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "cs193p-2017-fall-assignment3.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF2BD215283E21B3008AD015 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF2BD217283E21B3008AD015 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 		EF2BD209283E21B3008AD015 = {
 			isa = PBXGroup;
 			children = (
+				4E782D932CDE1FA000B43108 /* .swiftlint.yml */,
 				EF2BD214283E21B3008AD015 /* cs193p-2017-fall-assignment3 */,
 				EF2BD213283E21B3008AD015 /* Products */,
 			);
@@ -141,6 +144,7 @@
 				EF2BD20E283E21B3008AD015 /* Sources */,
 				EF2BD20F283E21B3008AD015 /* Frameworks */,
 				EF2BD210283E21B3008AD015 /* Resources */,
+				4E782D952CDE1FB400B43108 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -189,6 +193,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E782D942CDE1FA000B43108 /* .swiftlint.yml in Resources */,
 				EF2BD222283E21B3008AD015 /* LaunchScreen.storyboard in Resources */,
 				EF2BD21F283E21B3008AD015 /* Assets.xcassets in Resources */,
 				EF2BD241283E22F6008AD015 /* Main.storyboard in Resources */,
@@ -196,6 +201,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4E782D952CDE1FB400B43108 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]\nthen\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\nif command -v swiftlint >/dev/null 2>&1\nthen\n    swiftlint\nelse\n    echo \"warning: `swiftlint` command not found - See https://github.com/realm/SwiftLint#installation for installation instructions.\"\nfi\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EF2BD20E283E21B3008AD015 /* Sources */ = {

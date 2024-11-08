@@ -8,36 +8,33 @@
 import Foundation
 
 struct SetGame {
-    
+
     static let startFacedUpCardsCount = 12
     static let cardsToDealAndCheckCount = 3
     static let setQuessPoint = 5
     static let setNoQuessPenaltyPoint = 3
     static let removeChoisePenaltyPoint = 1
-    
+
     private(set) var deck = [SetCard]()
     private(set) var cardsChosen = [SetCard]()
     private(set) var cardsOnView = [SetCard]()
     private(set) var score = 0
-    
+
     var isSet: Bool? {
-        get {
-            if cardsChosen.count == SetGame.cardsToDealAndCheckCount {
-                return SetCard.isSet(cardsToCheck: cardsChosen)
-            }
-            else {
-                return nil
-            }
+        if cardsChosen.count == Self.cardsToDealAndCheckCount {
+            return SetCard.isSet(cardsToCheck: cardsChosen)
+        } else {
+            return nil
         }
     }
-    
+
     private func getDeck() -> [SetCard] {
         var deck = [SetCard]()
         for i in Sign.allCases {
             for j in Sign.allCases {
                 for k in Sign.allCases {
                     for l in Sign.allCases {
-                        let card = SetCard(i,j,k,l)
+                        let card = SetCard(i, j, k, l)
                         deck.append(card)
                     }
                 }
@@ -45,40 +42,38 @@ struct SetGame {
         }
         return deck.shuffled()
     }
-    
-    init (){
+
+    init () {
         deck = getDeck()
-        for _ in 0..<SetGame.startFacedUpCardsCount {
+        for _ in 0..<Self.startFacedUpCardsCount {
             cardsOnView.append(deck.removeFirst())
         }
     }
-    
+
     mutating func getCardsFromDeck() -> [SetCard]? {
         guard canDealMoreCards() else {
             return nil
         }
         var cardsToDeal = [SetCard]()
-        for _ in 0..<SetGame.cardsToDealAndCheckCount {
+        for _ in 0..<Self.cardsToDealAndCheckCount {
             cardsToDeal.append(deck.removeFirst())
         }
         return cardsToDeal
     }
-    
-    func canDealMoreCards(countToDeal : Int = SetGame.cardsToDealAndCheckCount) -> Bool {
-        return deck.count >= countToDeal
+
+    func canDealMoreCards(countToDeal: Int = Self.cardsToDealAndCheckCount) -> Bool {
+        deck.count >= countToDeal
     }
-    
-    mutating func dealCards(){
+
+    mutating func dealCards() {
         if let isMatched = isSet {
             dealCards(replaceMatchingCards: isMatched)
-        }
-        else {
+        } else {
             dealCards(replaceMatchingCards: false)
         }
     }
-    
-    mutating func dealCards(replaceMatchingCards : Bool)
-    {
+
+    mutating func dealCards(replaceMatchingCards: Bool) {
         if replaceMatchingCards {
             for element in cardsChosen {
                 _ = cardsOnView.removeIfContains(element)
@@ -90,21 +85,21 @@ struct SetGame {
         }
     }
 
-    mutating func chooseCard(card: SetCard){
+    mutating func chooseCard(card: SetCard) {
         guard cardsOnView.contains(card) else {return }
         switch cardsChosen.count {
-        case 0..<SetGame.cardsToDealAndCheckCount-1:
+        case 0..<Self.cardsToDealAndCheckCount-1:
             let wasAppend = cardsChosen.appendOrRemoveIfContains(card)
-            if !wasAppend { score = score-SetGame.removeChoisePenaltyPoint }
-        case SetGame.cardsToDealAndCheckCount-1:
+            if !wasAppend { score -= Self.removeChoisePenaltyPoint }
+        case Self.cardsToDealAndCheckCount-1:
             let wasAppend = cardsChosen.appendOrRemoveIfContains(card)
-            if !wasAppend { score = score-SetGame.removeChoisePenaltyPoint }
-            else {
+            if !wasAppend { score -= Self.removeChoisePenaltyPoint
+            } else {
                 if let changeScore = isSet {
-                    score = changeScore ? score+SetGame.setQuessPoint: score-SetGame.setNoQuessPenaltyPoint
+                    score = changeScore ? score+Self.setQuessPoint: score-Self.setNoQuessPenaltyPoint
                 }
             }
-        case SetGame.cardsToDealAndCheckCount:
+        case Self.cardsToDealAndCheckCount:
             if !cardsChosen.contains(card) {
                 if let isMatched = isSet {
                     if isMatched {
@@ -114,37 +109,33 @@ struct SetGame {
                 cardsChosen.removeAll()
                 cardsChosen.append(card)
             }
-        //else do nothing
+        // else do nothing
         default:
             break
         }
     }
-    
-    mutating func shuffle(){
+
+    mutating func shuffle() {
         cardsOnView.shuffle()
     }
 }
 
-extension Array where Element : Equatable {
-    mutating func removeIfContains(_ element: Element) -> Bool{
+extension Array where Element: Equatable {
+    mutating func removeIfContains(_ element: Element) -> Bool {
         if let index = self.firstIndex(of: element) {
             self.remove(at: index)
             return true
-        }
-        else {
+        } else {
             return false
         }
     }
-    
-    
-    mutating func appendOrRemoveIfContains(_ element: Element) -> Bool{
+
+    mutating func appendOrRemoveIfContains(_ element: Element) -> Bool {
         if removeIfContains(element) {
             return false
-        }
-        else {
+        } else {
             self.append(element)
             return true
         }
     }
 }
-

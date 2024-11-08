@@ -7,42 +7,39 @@
 
 import UIKit
 
-
 @IBDesignable
 class SetCardView: UIView, SetCardViewProtocol {
-    
-   
-    @IBInspectable var borderColor : UIColor = DefaultUIConstants.borderColor {
+
+    @IBInspectable var borderColor: UIColor = DefaultUIConstants.borderColor {
         didSet {
             layer.borderColor = borderColor.cgColor
             setNeedsDisplay(); setNeedsLayout()
         }
     }
 
-    @IBInspectable var borderWidth : CGFloat = DefaultUIConstants.borderWidth {
+    @IBInspectable var borderWidth: CGFloat = DefaultUIConstants.borderWidth {
         didSet {
             layer.borderWidth = borderWidth
             setNeedsDisplay(); setNeedsLayout()
         }
     }
 
-    @IBInspectable var cornerRadius : CGFloat = DefaultUIConstants.cornerRadius {
+    @IBInspectable var cornerRadius: CGFloat = DefaultUIConstants.cornerRadius {
         didSet {
             layer.cornerRadius = cornerRadius
             setNeedsDisplay(); setNeedsLayout()
         }
     }
-    
-    func setBorderColor(at: UIColor){
+
+    func setBorderColor(at: UIColor) {
         borderColor = at
         borderWidth = DefaultUIConstants.borderWidth
     }
-    
+
     func clearBorder() {
         borderColor = DefaultUIConstants.borderColor
     }
-    
-    
+
     @IBInspectable
     var symbolKindInt: Int = 1 {
         didSet {
@@ -54,7 +51,7 @@ class SetCardView: UIView, SetCardViewProtocol {
             }
         }
     }
-    
+
     @IBInspectable
     var fillKindInt: Int = 1 {
         didSet {
@@ -66,7 +63,7 @@ class SetCardView: UIView, SetCardViewProtocol {
             }
         }
     }
-    
+
     @IBInspectable
     var colorKindInt: Int = 1 {
         didSet {
@@ -78,31 +75,30 @@ class SetCardView: UIView, SetCardViewProtocol {
             }
         }
     }
-    
+
     @IBInspectable
     var symbolsCount: Int = 1 {didSet {setNeedsDisplay(); setNeedsLayout()}}
-    
-    private var color: UIColor = SetColor.green {didSet {setNeedsDisplay(); setNeedsLayout()}}
-    private var fill = Fill.unfilled{didSet {setNeedsDisplay(); setNeedsLayout()}}
-    private var symbol = Symbol.squiggle{didSet {setNeedsDisplay(); setNeedsLayout()}}
-    
-    
-    required init(with card: SetCard){
+
+    private var color: UIColor = SetColor.green { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    private var fill = Fill.unfilled { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    private var symbol = Symbol.squiggle { didSet { setNeedsDisplay(); setNeedsLayout() } }
+
+    required init(with card: SetCard) {
         self.card = card
         super.init(frame: CGRect.zero)
         updateViewFromCard()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    var card : SetCard {
+
+    var card: SetCard {
         didSet {
             updateViewFromCard()
         }
     }
-    
+
     private func updateViewFromCard() {
         symbolsCount = card.firstSign.rawValue
         colorKindInt = card.secondSign.rawValue
@@ -111,7 +107,7 @@ class SetCardView: UIView, SetCardViewProtocol {
         setNeedsDisplay()
         setNeedsLayout()
     }
-    
+
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func draw(_ rect: CGRect) {
@@ -134,7 +130,7 @@ class SetCardView: UIView, SetCardViewProtocol {
         default: break
         }
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         configureBorder()
@@ -146,7 +142,7 @@ class SetCardView: UIView, SetCardViewProtocol {
         layer.borderWidth = borderWidth
         layer.borderColor = borderColor.cgColor
     }
-    
+
     private func drawSymbol(_ rect: CGRect) {
         let rect = rect.insetBy(dx: DefaultUIConstants.internalOffset, dy: DefaultUIConstants.internalOffset)
         let path: UIBezierPath
@@ -158,7 +154,7 @@ class SetCardView: UIView, SetCardViewProtocol {
         case .diamond:
             path = getDiamond(in: rect)
         }
-       
+
         // we always set border
         color.setStroke()
         path.lineWidth = DefaultUIConstants.internalBorderWidth
@@ -173,12 +169,12 @@ class SetCardView: UIView, SetCardViewProtocol {
             stripePath(path: path)
         }
     }
-    
-    private func stripePath(path: UIBezierPath){
+
+    private func stripePath(path: UIBezierPath) {
         let context = UIGraphicsGetCurrentContext()
         context?.saveGState()
         path.addClip()
-        let numberOfLines : Int = Int(self.bounds.width / DefaultUIConstants.betweenStripesDistance)
+        let numberOfLines: Int = Int(self.bounds.width / DefaultUIConstants.betweenStripesDistance)
         let line = UIBezierPath()
         line.lineWidth = DefaultUIConstants.internalBorderWidth
         line.move(to: CGPoint(x: self.bounds.minX, y: self.bounds.minY))
@@ -190,8 +186,8 @@ class SetCardView: UIView, SetCardViewProtocol {
         }
         context?.restoreGState()
     }
-    
-    //MARK: shape drawing functions
+
+    // MARK: shape drawing functions
     private func getOval(in rect: CGRect) -> UIBezierPath {
         let oval = UIBezierPath()
         let radius = rect.height / 2
@@ -212,7 +208,7 @@ class SetCardView: UIView, SetCardViewProtocol {
         oval.close()
         return oval
     }
-    
+
     private func getDiamond(in rect: CGRect) -> UIBezierPath {
         let diamond = UIBezierPath()
         diamond.move(to: CGPoint(x: rect.midX, y: rect.minY))
@@ -222,20 +218,19 @@ class SetCardView: UIView, SetCardViewProtocol {
         diamond.close()
         return diamond
     }
-    
+
     private func getSquiggle(in rect: CGRect) -> UIBezierPath {
         let partSquiggle = UIBezierPath()
         partSquiggle.move(to: CGPoint(x: rect.minX, y: rect.midY))
         partSquiggle.addCurve(to: CGPoint(x: rect.minX + rect.size.width*0.2, y: rect.minY + rect.height*0.15),
                               controlPoint1: CGPoint(x: rect.minX, y: rect.minY),
                               controlPoint2: CGPoint(x: rect.minX + rect.size.width*0.15, y: rect.minY + rect.height*0.1))
-        
         partSquiggle.addCurve(to: CGPoint(x: rect.midX + rect.size.width*0.15, y: rect.midY - rect.height*0.15),
-                                  controlPoint1: CGPoint(x: rect.minX + rect.size.width*0.25, y: rect.minY + rect.height*0.2),
-        controlPoint2: CGPoint(x: rect.midX, y: rect.midY))
+                              controlPoint1: CGPoint(x: rect.minX + rect.size.width*0.25, y: rect.minY + rect.height*0.2),
+                              controlPoint2: CGPoint(x: rect.midX, y: rect.midY))
         partSquiggle.addCurve(to: CGPoint(x: rect.maxX, y: rect.midY),
                               controlPoint1: CGPoint(x: rect.midX + rect.size.width*0.35, y: rect.minY),
-        controlPoint2: CGPoint(x: rect.maxX, y: rect.minY))
+                              controlPoint2: CGPoint(x: rect.maxX, y: rect.minY))
         let downSquiggle = UIBezierPath(cgPath: partSquiggle.cgPath)
         downSquiggle.apply(CGAffineTransform.identity.rotated(by: CGFloat.pi))
         downSquiggle.apply(CGAffineTransform.identity.translatedBy(
@@ -245,10 +240,8 @@ class SetCardView: UIView, SetCardViewProtocol {
         partSquiggle.append(downSquiggle)
         return partSquiggle
     }
-
 }
-    
-    
+
 private enum Fill: Int {
     case solid = 1
     case striped
@@ -268,8 +261,8 @@ private struct SetColor {
 }
 
 private struct DefaultUIConstants {
-    static let cornerRadius : CGFloat = 8.0
-    static let borderWidth : CGFloat = 2.5
+    static let cornerRadius: CGFloat = 8.0
+    static let borderWidth: CGFloat = 2.5
     static let borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
     static let backgroundColor  = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     static let cornerOffset = 1.5
@@ -280,18 +273,18 @@ private struct DefaultUIConstants {
 
 extension CGRect {
     var firstThird: CGRect {
-        return CGRect(x: minX, y: minY, width: width, height: height/3)
+        CGRect(x: minX, y: minY, width: width, height: height/3)
     }
     var centerThird: CGRect {
-        return CGRect(x: minX, y: minY + height/3, width: width, height: height/3)
+        CGRect(x: minX, y: minY + height/3, width: width, height: height/3)
     }
     var lastThird: CGRect {
-        return CGRect(x: minX, y: minY + 2*height/3, width: width, height: height/3)
+        CGRect(x: minX, y: minY + 2*height/3, width: width, height: height/3)
     }
     var firstThirdWithSixOffset: CGRect {
-        return CGRect(x: minX, y: minY + height/6, width: width, height: height/3)
+        CGRect(x: minX, y: minY + height/6, width: width, height: height/3)
     }
     var lastThirdWithSixOffset: CGRect {
-        return CGRect(x: minX, y: midY, width: width, height: height/3)
+        CGRect(x: minX, y: midY, width: width, height: height/3)
     }
 }
