@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,26 +12,41 @@
         <!--Set Game View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="SetGameViewController" customModule="Set2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="SetGameViewController" customModule="cs193p_2017_fall_assignment3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8py-y8-7iJ" customClass="SetCardAreaView" customModule="Set2" customModuleProvider="target">
-                                <rect key="frame" x="5" y="49" width="365" height="654"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8py-y8-7iJ" customClass="SetCardAreaView" customModule="cs193p_2017_fall_assignment3" customModuleProvider="target">
+                                <rect key="frame" x="5" y="55" width="365" height="638"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yIW-S7-k5h">
-                                <rect key="frame" x="131.66666666666666" y="703" width="112" height="40"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3M6-bp-mud" userLabel="MiddleStackView">
+                                <rect key="frame" x="5" y="693" width="365" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yIW-S7-k5h">
+                                        <rect key="frame" x="0.0" y="0.0" width="219" height="50"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Deal more cards"/>
+                                        <connections>
+                                            <action selector="dealMoreCards" destination="BYZ-38-t0r" eventType="touchUpInside" id="iuI-ou-Tgo"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDt-Jb-anz" userLabel="testModeCheckbox">
+                                        <rect key="frame" x="219" y="0.0" width="146" height="50"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="square" catalog="system" title="Enable Test Mode">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="touchTestMode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zsa-ne-JQz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="izs-9g-sUy"/>
+                                    <constraint firstItem="yIW-S7-k5h" firstAttribute="width" secondItem="fDt-Jb-anz" secondAttribute="width" multiplier="1.5" id="XNf-1i-TGO"/>
                                 </constraints>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Deal more cards"/>
-                                <connections>
-                                    <action selector="dealMoreCards" destination="BYZ-38-t0r" eventType="touchUpInside" id="iuI-ou-Tgo"/>
-                                </connections>
-                            </button>
+                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="nb7-Yw-cny" userLabel="DownStackView">
                                 <rect key="frame" x="5" y="743" width="365" height="30"/>
                                 <subviews>
@@ -55,21 +70,23 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="8py-y8-7iJ" firstAttribute="bottom" secondItem="3M6-bp-mud" secondAttribute="top" id="1cY-DY-5QX"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nb7-Yw-cny" secondAttribute="bottom" constant="5" id="CH5-nz-NsD"/>
                             <constraint firstItem="nb7-Yw-cny" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="KZ3-dC-2fQ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nb7-Yw-cny" secondAttribute="trailing" constant="5" id="Ng2-S8-UtR"/>
+                            <constraint firstItem="3M6-bp-mud" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="ONG-mr-tBb"/>
+                            <constraint firstItem="3M6-bp-mud" firstAttribute="bottom" secondItem="nb7-Yw-cny" secondAttribute="top" id="TJT-aJ-yn5"/>
                             <constraint firstItem="8py-y8-7iJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="VHa-k2-ORB"/>
-                            <constraint firstItem="8py-y8-7iJ" firstAttribute="bottom" secondItem="yIW-S7-k5h" secondAttribute="top" id="WGZ-OF-KEQ"/>
-                            <constraint firstItem="yIW-S7-k5h" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YaU-jX-7ea"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3M6-bp-mud" secondAttribute="trailing" constant="5" id="XmW-uG-VUK"/>
                             <constraint firstItem="8py-y8-7iJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="jCe-Fl-RSd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8py-y8-7iJ" secondAttribute="trailing" constant="5" id="lMa-pf-BcU"/>
-                            <constraint firstItem="yIW-S7-k5h" firstAttribute="bottom" secondItem="nb7-Yw-cny" secondAttribute="top" id="yHi-JN-oMQ"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="dealCardsButton" destination="yIW-S7-k5h" id="tpk-EE-8IH"/>
-                        <outlet property="scoreLabel" destination="ZWO-kA-jnV" id="h70-fh-Nhg"/>
+                        <outlet property="scoreLabel" destination="ZWO-kA-jnV" id="66j-gl-as1"/>
                         <outlet property="setCardsView" destination="8py-y8-7iJ" id="Rg8-ed-qAZ"/>
+                        <outlet property="testModeCheckbox" destination="fDt-Jb-anz" id="Lqa-kT-Jh0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -78,6 +95,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="square" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

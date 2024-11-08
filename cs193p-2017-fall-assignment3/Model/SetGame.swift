@@ -19,10 +19,11 @@ struct SetGame {
     private(set) var cardsChosen = [SetCard]()
     private(set) var cardsOnView = [SetCard]()
     private(set) var score = 0
+    private var isTestMode = false
 
     var isSet: Bool? {
         if cardsChosen.count == Self.cardsToDealAndCheckCount {
-            return SetCard.isSet(cardsToCheck: cardsChosen)
+            return isTestMode ? true : SetCard.isSet(cardsToCheck: cardsChosen)
         } else {
             return nil
         }
@@ -48,6 +49,10 @@ struct SetGame {
         for _ in 0..<Self.startFacedUpCardsCount {
             cardsOnView.append(deck.removeFirst())
         }
+    }
+
+    mutating func toggleTestMode() {
+        isTestMode = !isTestMode
     }
 
     mutating func getCardsFromDeck() -> [SetCard]? {
@@ -86,32 +91,34 @@ struct SetGame {
     }
 
     mutating func chooseCard(card: SetCard) {
-        guard cardsOnView.contains(card) else {return }
+        guard cardsOnView.contains(card) else { return }
+        let newCardWasChosen = !cardsChosen.contains(card)
+        let setChecked = isSet
         switch cardsChosen.count {
-        case 0..<Self.cardsToDealAndCheckCount-1:
-            let wasAppend = cardsChosen.appendOrRemoveIfContains(card)
-            if !wasAppend { score -= Self.removeChoisePenaltyPoint }
-        case Self.cardsToDealAndCheckCount-1:
-            let wasAppend = cardsChosen.appendOrRemoveIfContains(card)
-            if !wasAppend { score -= Self.removeChoisePenaltyPoint
-            } else {
-                if let changeScore = isSet {
-                    score = changeScore ? score+Self.setQuessPoint: score-Self.setNoQuessPenaltyPoint
-                }
-            }
+        case 0..<Self.cardsToDealAndCheckCount:
+            cardsChosen.appendOrRemoveIfContains(card)
         case Self.cardsToDealAndCheckCount:
-            if !cardsChosen.contains(card) {
-                if let isMatched = isSet {
-                    if isMatched {
-                        dealCards(replaceMatchingCards: isMatched)
-                    }
+            if let isMatched = setChecked {
+                if isMatched {
+                    dealCards(replaceMatchingCards: isMatched)
+                    if newCardWasChosen { cardsChosen.append(card) }
+                } else {
+                    cardsChosen.removeAll()
+                    cardsChosen.append(card)
                 }
-                cardsChosen.removeAll()
-                cardsChosen.append(card)
             }
-        // else do nothing
+            // else do nothing
         default:
             break
+        }
+        updateScore(selectedCardIsChosenAgain: !newCardWasChosen, isSet: setChecked)
+    }
+
+    mutating private func updateScore(selectedCardIsChosenAgain: Bool, isSet: Bool?) {
+        if let changeScore = isSet {
+            score = changeScore ? score+Self.setQuessPoint: score-Self.setNoQuessPenaltyPoint
+        } else {
+            if selectedCardIsChosenAgain { score -= Self.removeChoisePenaltyPoint }
         }
     }
 
@@ -130,12 +137,9 @@ extension Array where Element: Equatable {
         }
     }
 
-    mutating func appendOrRemoveIfContains(_ element: Element) -> Bool {
-        if removeIfContains(element) {
-            return false
-        } else {
+    mutating func appendOrRemoveIfContains(_ element: Element) {
+        if !removeIfContains(element) {
             self.append(element)
-            return true
         }
     }
 }

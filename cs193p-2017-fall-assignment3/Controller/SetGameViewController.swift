@@ -11,8 +11,9 @@ class SetGameViewController: UIViewController {
 
     private var game: SetGame!
 
-    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var testModeCheckbox: UIButton!
     @IBOutlet weak var dealCardsButton: UIButton!
+    @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var setCardsView: SetCardAreaView! {
         didSet {
             getReadyToStart()
@@ -26,6 +27,13 @@ class SetGameViewController: UIViewController {
         }
     }
 
+    @IBAction func touchTestMode(_ sender: UIButton) {
+        game.toggleTestMode()
+        sender.isSelected.toggle()
+        updateCheckbox(isChecked: sender.isSelected)
+        updateCardsState()
+    }
+
     @IBAction func dealMoreCards() {
        game.dealCards()
         updateViewFromModel()
@@ -35,11 +43,17 @@ class SetGameViewController: UIViewController {
         getReadyToStart()
         updateScore()
         updateDealCardsButtonState()
+        updateCheckbox(isChecked: false)
     }
 
     private func getReadyToStart() {
         game = SetGame()
         resetCardViews()
+    }
+
+    private func updateCheckbox(isChecked: Bool) {
+        let symbolName = isChecked ? "checkmark.square" : "square"
+        testModeCheckbox.setImage(UIImage(systemName: symbolName), for: .normal)
     }
 
     private func resetCardViews() {
